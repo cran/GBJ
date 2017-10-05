@@ -1,10 +1,10 @@
-5f6a0bdf128d21d2e2f9b8c38b65283e *DESCRIPTION
+4e59095305c9e0844e36c14f75a72b8e *DESCRIPTION
 46db2e937ad90823048b405a8a9bf692 *NAMESPACE
 749d9b8951ab31bb5106d6c2e1bee158 *R/BJ.R
-33e570162fc703f48edf40618ce9aa2d *R/GBJ.R
+2476a8841f0165b967b713efdd8c404b *R/GBJ.R
 011a1542952ca5ab602aa9bf08f4ba4c *R/GBJ_objective.R
 a96b11c1b4c150296ecc38bd47f076d8 *R/GBJ_pvalue.R
-cfcbe20637ec776a9f16759d34bc67ca *R/GHC.R
+17da04568ba0273c5b14369515f1184a *R/GHC.R
 c71c7107fb3f07c3c1b624e7b4377a83 *R/GHC_objective.R
 97ad31b3f7e5e5b2026b35a3d8bf764d *R/HC.R
 2392cb6fdff7e108a54b50c709813e62 *R/RcppExports.R
@@ -26,8 +26,8 @@ ce8e9ca6f4f38cf97515474b16d97aab *R/score_stats_only.R
 813fc790b8838df4a193da6622e7b932 *data/FGFR2.rda
 7944734739b0256a171f7d5407430a9f *data/gbr_pcs.rda
 9e74aead8872e5d0b207b3197f07da50 *inst/doc/GBJ_tutorial.R
-24d74ce1c5b48024e9c18a709e6b8ba2 *inst/doc/GBJ_tutorial.Rmd
-5cefc2320eb063d519b02c570f502569 *inst/doc/GBJ_tutorial.html
+2fa02e3a098e492df48669ba5a6ce928 *inst/doc/GBJ_tutorial.Rmd
+bbb6163f88c0bbb6b724a361ab85356e *inst/doc/GBJ_tutorial.html
 517b31da12fc8c2608345cb1770cde25 *man/BJ.Rd
 a52b1357d68055c0292d392621a43445 *man/FGFR2.Rd
 1111af41299a1cfb9340518374446d35 *man/GBJ.Rd
@@ -56,4 +56,5 @@ e3d3cb360fbfdb3c6974e14eb5f09870 *src/Makevars.win
 5c8f5f1e5d0916e9ceb9e079b7868285 *tests/testthat.R
 7ae26798f9414370ee78dcb48393648b *tests/testthat/test_omnibus.R
 393ba0db00b39a33322bdee350800e79 *tests/testthat/test_pvalue_calculations.R
-24d74ce1c5b48024e9c18a709e6b8ba2 *vignettes/GBJ_tutorial.Rmd
+b10ff2bf01b15b55f3ece0b317769c7d *tests/testthat/test_variance_calc.R
+2fa02e3a098e492df48669ba5a6ce928 *vignettes/GBJ_tutorial.Rmd

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Ryan Sun" />
 
-<meta name="date" content="2017-08-20" />
+<meta name="date" content="2017-10-05" />
 
 <title>Generalized Berk-Jones (GBJ) Tutorial</title>
 
@@ -70,20 +70,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Generalized Berk-Jones (GBJ) Tutorial</h1>
 <h4 class="author"><em>Ryan Sun</em></h4>
-<h4 class="date"><em>2017-08-20</em></h4>
+<h4 class="date"><em>2017-10-05</em></h4>
 
 
 
-<p>The GBJ package implements the Generalized Berk-Jones (GBJ) test as detailed in:</p>
-<blockquote>
-<p>“The Generalized Berk-Jones Statistic for Set-Based Inference in Genetic Association Studies, Ryan Sun and Xihong Lin, <em>Submitted</em>”</p>
-</blockquote>
+<p>The GBJ package implements the Generalized Berk-Jones (GBJ) test for set-based inference in genetic association studies.</p>
 <p>Also included in this package are routines to perform the Generalized Higher Criticism (GHC), Higher Criticism (HC), Berk-Jones (BJ), and Minimum p-value (minP) tests. Some guidance on choosing between these methods (which, in principal, test the same null hypothesis and could be used interchangeably) is also given in the above paper.</p>
 <p>The remainder of this vignette provides:</p>
 <ul>
 <li>A high-level explanation of the problems that GBJ/GHC/HC/BJ/minP can solve.</li>
 <li>A worked example in the context of Genome-Wide Association Studies (GWAS) where individual-level genotype data is available.</li>
-<li>A worked example in the context of Genome-Wide Association Studies (GWAS) where only GWAS summary statistics are available.</li>
+<li>A worked example in the context of GWAS where only single SNP summary statistics are available.</li>
 </ul>
 <div id="uses-for-gbj" class="section level2">
 <h2>Uses for GBJ</h2>
@@ -111,16 +108,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 cancer_status &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">500</span>), <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">500</span>))
 
 <span class="co"># All of our SNPs have minor allele frequency of 0.3 in this example</span>
-genotype_data &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data=</span><span class="kw">rbinom</span>(<span class="dt">n=</span><span class="dv">1000</span>*<span class="dv">50</span>, <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">prob=</span><span class="fl">0.3</span>), <span class="dt">nrow=</span><span class="dv">1000</span>)
+genotype_data &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data=</span><span class="kw">rbinom</span>(<span class="dt">n=</span><span class="dv">1000</span><span class="op">*</span><span class="dv">50</span>, <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">prob=</span><span class="fl">0.3</span>), <span class="dt">nrow=</span><span class="dv">1000</span>)
 age &lt;-<span class="st"> </span><span class="kw">round</span>( <span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">min=</span><span class="dv">30</span>, <span class="dt">max=</span><span class="dv">80</span>) )
 gender &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">prob=</span><span class="fl">0.5</span>)     <span class="co"># Let 1 denote a female and 0 a male</span></code></pre></div>
 <p>Under the null hypothesis of no association between gene and pancreatic cancer, we can assume the true logistic model to be:</p>
 <p><span class="math display">\[\text{logit}(\mu_{i}) = \beta_{0} + \beta_{1}*Age_{i} + \beta_{2}*Gender_{i}\]</span></p>
 <p>(actually since we generated the data, we know <span class="math inline">\(\beta_{1}=\beta_{2}=0\)</span>, but this is just for illustration)</p>
 <p>The function <code>calc_score_stats()</code> can be used to calculate score statistics for each of the 50 SNPs. Under the null, these statistics will have an asymptotic N(0,1) distribution.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">null_mod &lt;-<span class="st"> </span><span class="kw">glm</span>(cancer_status~age+gender, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">null_mod &lt;-<span class="st"> </span><span class="kw">glm</span>(cancer_status<span class="op">~</span>age<span class="op">+</span>gender, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
 log_reg_stats &lt;-<span class="st"> </span><span class="kw">calc_score_stats</span>(<span class="dt">null_model=</span>null_mod, <span class="dt">factor_matrix=</span>genotype_data, <span class="dt">link_function=</span><span class="st">&quot;logit&quot;</span>)
-log_reg_stats$test_stats</code></pre></div>
+log_reg_stats<span class="op">$</span>test_stats</code></pre></div>
 <pre><code>##  [1] -0.68383391 -1.52282289 -0.04324001  1.02900792 -2.08636456
 ##  [6] -0.47750816  1.02134595  0.57157512  0.09543809  1.88826217
 ## [11] -0.50314642 -0.39237040 -1.00903095  0.70567669 -0.74408222
@@ -131,7 +128,7 @@ log_reg_stats$test_stats</code></pre></div>
 ## [36]  1.78314038  0.88944355  0.44694854 -1.34907210  1.02299625
 ## [41] -0.59392262 -0.87602299  0.55980215 -1.39571015 -0.16295461
 ## [46] -0.86944840 -0.21030648 -1.61408239  0.64425823  1.71642921</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log_reg_stats$cor_mat[<span class="dv">1</span>:<span class="dv">5</span>,<span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log_reg_stats<span class="op">$</span>cor_mat[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
 <pre><code>##              [,1]        [,2]        [,3]        [,4]         [,5]
 ## [1,]           NA  0.02020415 -0.01580513  0.03906158  0.005420753
 ## [2,]  0.020204152          NA -0.03967446  0.03321533  0.028975255
@@ -140,8 +137,8 @@ log_reg_stats$test_stats</code></pre></div>
 ## [5,]  0.005420753  0.02897526  0.03401118 -0.04345516           NA</code></pre>
 <p>If our outcome was continuous and we wanted to assume a linear regression model, then we could still use <code>calc_score_stats()</code> with <code>link_function='linear'</code>, or if the outcome was non-negative count data and we assume a Poisson regression model, then use <code>link_function='log'</code>.</p>
 <p>Now we have both the test statistics and their correlation matrix, we can apply GBJ.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cor_Z &lt;-<span class="st"> </span>log_reg_stats$cor_mat
-score_stats =<span class="st"> </span>log_reg_stats$test_stats
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cor_Z &lt;-<span class="st"> </span>log_reg_stats<span class="op">$</span>cor_mat
+score_stats =<span class="st"> </span>log_reg_stats<span class="op">$</span>test_stats
 <span class="kw">GBJ</span>(<span class="dt">test_stats=</span>score_stats, <span class="dt">cor_mat=</span>cor_Z)</code></pre></div>
 <pre><code>## $GBJ
 ## [1] 0.6109885
