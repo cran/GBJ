@@ -17,4 +17,3 @@ from the 'GBR' population in the 1000 Genomes Projects.  There are 64 SNPs docum
 here, all residing in the FGFR2 gene.
 }
 \keyword{datasets}
-

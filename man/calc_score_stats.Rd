@@ -27,9 +27,9 @@ factor for input into GBJ/GHC/HC/BJ/minP.  Also get the correlations between the
 Designed to be used with linear or logistic or log-linear regression null models.
 }
 \examples{
+set.seed(0)
 Y <- rbinom(n=100, size=1, prob=0.5)
 null_mod <- glm(Y~1, family=binomial(link="logit"))
 factor_mat <- matrix(data=rnorm(n=100*5), nrow=100)
 calc_score_stats(null_mod, factor_mat, "logit")
 }
-

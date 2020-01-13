@@ -16,6 +16,7 @@
 #'
 #' @export
 #' @examples
+#' set.seed(0)
 #' Y <- rbinom(n=100, size=1, prob=0.5)
 #' null_mod <- glm(Y~1, family=binomial(link="logit"))
 #' factor_mat <- matrix(data=rnorm(n=100*5), nrow=100)
@@ -54,7 +55,7 @@ calc_score_stats <- function(null_model, factor_matrix, link_function, P_mat=NUL
 			                        warning=function(w) w, error=function(e) e)
 
 			# We've been getting negative denominators with, for example, very rare SNPs
-			if (length(class(score_denom)) > 1) {
+			if (!(class(score_denom)[1] %in% c("matrix", "array", "numeric"))) {
 			  err_msg <- paste('Error in calculating test statistic for factor ', kkk,
 			                   ' possibly it is constant?  Try removing and rerunning.', sep='')
 			  stop(err_msg)
@@ -93,7 +94,7 @@ calc_score_stats <- function(null_model, factor_matrix, link_function, P_mat=NUL
 		                        error=function(e) e)
 
 		# We've been getting negative denominators with, for example, very rare SNPs
-		if (length(class(score_denom)) > 1) {
+		if (!(class(score_denom)[1] %in% c("matrix", "array", "numeric"))) {
 		    err_msg <- paste('Error in calculating test statistic for factor ', kkk,
 		                     ' - possibly it is constant?  Try removing and rerunning.', sep='')
 		    stop(err_msg)

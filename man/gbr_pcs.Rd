@@ -14,4 +14,3 @@ from the 'GBR' population in the 1000 Genomes Projects.  These would normally be
 used as covariates in a regression model to control for population stratification.
 }
 \keyword{datasets}
-
