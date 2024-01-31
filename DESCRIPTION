@@ -2,8 +2,8 @@ Package: GBJ
 Type: Package
 Title: Generalized Berk-Jones Test for Set-Based Inference in Genetic
         Association Studies
-Version: 0.5.3
-Date: 2020-01-10
+Version: 0.5.4
+Date: 2024-01-28
 Authors@R: person("Ryan", "Sun", email = "ryansun.work@gmail.com", role = c("aut", "cre"))
 Description: Offers the Generalized Berk-Jones (GBJ) test for set-based inference in genetic
 	association studies. The GBJ is designed as an alternative to tests such as Berk-Jones (BJ),
@@ -11,18 +11,18 @@ Description: Offers the Generalized Berk-Jones (GBJ) test for set-based inferenc
     Kernel Association Test (SKAT). All of these other methods (except for SKAT) are also implemented 
     in this package, and we additionally provide an omnibus test (OMNI) which integrates information from each of the tests.
     The GBJ has been shown to outperform other tests in genetic association studies when signals
-    are correlated and moderately sparse. Please see the vignette for a quickstart guide or the paper at
-    <doi:10.1080/01621459.2019.1660170> for full details.
+    are correlated and moderately sparse. Please see the vignette for a quickstart guide or Sun and Lin
+    (2017) <arXiv:1710.02469> for more details.
 Depends: R (>= 2.10)
-Imports: Rcpp (>= 0.12.7), mvtnorm, SKAT, stats,
+Imports: Rcpp (>= 0.12.7), mvtnorm, SKAT, stats, BH
 LinkingTo: Rcpp, BH
 License: GPL-3
-RoxygenNote: 7.0.2
+RoxygenNote: 7.3.1
 Suggests: knitr, rmarkdown, bindata, rje, testthat
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2020-01-13 02:27:23 UTC; ryansun
+Packaged: 2024-01-29 20:35:15 UTC; rsun3
 Author: Ryan Sun [aut, cre]
 Maintainer: Ryan Sun <ryansun.work@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-01-13 09:40:09 UTC
+Date/Publication: 2024-01-31 08:40:06 UTC

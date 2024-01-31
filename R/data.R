@@ -2,8 +2,7 @@
 #'
 #' A dataset containing the genotypes (number of minor alleles) for each of 91 subjects
 #' from the 'GBR' population in the 1000 Genomes Projects.  There are 64 SNPs documented
-#' here, all residing in the FGFR2 gene. CRAN rejects the link for unclear reasons, but
-#' the original source is at internationalgenome dot org backslash data.
+#' here, all residing in the FGFR2 gene.
 #'
 #' @format A matrix with 91 rows (one for each subject) and 64 columns (one for each SNP)
 #'
@@ -11,6 +10,7 @@
 #' @keywords datasets
 #' @name FGFR2
 #' @usage data(FGFR2)
+#' @source \url{https://www.internationalgenome.org/data}
 NULL
 
 

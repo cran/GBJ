@@ -115,6 +115,6 @@ test_that("Variance calculation in paper matches software", {
   sim_var <- var(S_vec)
 
   # Analytic p-value should come close to simulation
-  expect_equal(var_a, sim_var, tol=1)
+  expect_equal(var_a, sim_var, tol=0.1)
 
 })

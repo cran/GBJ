@@ -4,9 +4,11 @@
 \name{FGFR2}
 \alias{FGFR2}
 \title{Genotypes at FGFR2 SNPs for subjects from 'GBR' population in the 1000 Genomes Project.}
-\format{A matrix with 91 rows (one for each subject) and 64 columns (one for each SNP)}
+\format{
+A matrix with 91 rows (one for each subject) and 64 columns (one for each SNP)
+}
 \source{
-\url{http://www.internationalgenome.org/data}
+\url{https://www.internationalgenome.org/data}
 }
 \usage{
 data(FGFR2)
